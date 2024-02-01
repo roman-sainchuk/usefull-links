@@ -45,7 +45,7 @@ jobs:
             echo "CIRCLE_SHA1=$CIRCLE_SHA1"
             echo "MESSAGE=<< parameters.commitMessage >>"
             echo "AUTHOR=$(git log --format='%an <%ae>' $CIRCLE_SHA1^!)"
-            echo "BRANCH=<< pipeline.git.branch >>"
+            echo "BRANCH=$CIRCLE_BRANCH"
 
             REPO_NAME="<< parameters.repositoryName >>";
             NAMESPACE="<< parameters.namespace >>"
