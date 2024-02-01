@@ -16,10 +16,6 @@ jobs:
       mountPath:
         description: Mount path
         type: string
-      commitSha:
-        description: Commit SHA
-        type: string
-        default: '<< pipeline.git.revision >>'
       currentBranch:
         description: Current branch
         type: string
@@ -60,8 +56,8 @@ jobs:
               --mount-path "<< parameters.mountPath >>" \
               --default-branch "<< parameters.defaultBranch >>" \
               --branch "<< parameters.currentBranch >>" \
-              --author "$(git log --format='%an <%ae>' << parameters.commitSha >>^!)" \
-              --commit-sha "<< parameters.commitSha >>" \
+              --author "$(git log --format='%an <%ae>' "<< parameters.git.revision >>"^!)" \
+              --commit-sha "<< parameters.git.revision >>" \
               --commit-url "<< pipeline.trigger_parameters.github_app.repo_url >>/commit/<< parameters.commitSha >>" \
               --created-at "<< parameters.commitTimestamp >>" \
               --repository "$REPO_NAME" \
