@@ -56,9 +56,9 @@ jobs:
               --mount-path "<< parameters.mountPath >>" \
               --default-branch "<< parameters.defaultBranch >>" \
               --branch "<< parameters.currentBranch >>" \
-              --author "$(git log --format='%an <%ae>' "<< parameters.git.revision >>"^!)" \
-              --commit-sha "<< parameters.git.revision >>" \
-              --commit-url "<< pipeline.trigger_parameters.github_app.repo_url >>/commit/<< parameters.git.revision >>" \
+              --author "$(git log --format='%an <%ae>' "<< pipeline.git.revision >>"^!)" \
+              --commit-sha "<< pipeline.git.revision >>" \
+              --commit-url "<< pipeline.trigger_parameters.github_app.repo_url >>/commit/<< pipeline.git.revision >>" \
               --created-at "<< parameters.commitTimestamp >>" \
               --repository "$REPO_NAME" \
               --namespace "$NAMESPACE" \
