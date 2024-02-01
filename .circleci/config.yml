@@ -48,6 +48,9 @@ jobs:
           command: |-
             echo "CIRCLE_SHA1=$CIRCLE_SHA1"
             echo "MESSAGE=<< parameters.commitMessage >>"
+            echo "AUTHOR=$(git log --format='%an <%ae>' $CIRCLE_SHA1^!)"
+            echo "BRANCH=<< parameters.currentBranch >>"
+
             REPO_NAME="<< parameters.repositoryName >>";
             NAMESPACE="<< parameters.namespace >>"
             NAMESPACE="${NAMESPACE:-$(basename $(echo "<< pipeline.trigger_parameters.github_app.repo_url >>" | sed "s/$REPO_NAME//p"))}"
@@ -64,7 +67,7 @@ jobs:
               --created-at "<< parameters.commitTimestamp >>" \
               --repository "$REPO_NAME" \
               --namespace "$NAMESPACE" \
-              --message << parameters.commitMessage >> \
+              --message "<< parameters.commitMessage >>" \
               --domain "<< parameters.domain >>" \
               --wait-for-deployment
 workflows:
