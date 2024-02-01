@@ -47,7 +47,7 @@ jobs:
           name: 'Push files and wait for deployment'
           command: |-
             echo "CIRCLE_SHA1=$CIRCLE_SHA1"
-            echo "MESSAGE="<< parameters.commitMessage >>";
+            echo "MESSAGE=<< parameters.commitMessage >>"
             REPO_NAME="<< parameters.repositoryName >>";
             NAMESPACE="<< parameters.namespace >>"
             NAMESPACE="${NAMESPACE:-$(basename $(echo "<< pipeline.trigger_parameters.github_app.repo_url >>" | sed "s/$REPO_NAME//p"))}"
