@@ -16,10 +16,6 @@ jobs:
       mountPath:
         description: Mount path
         type: string
-      currentBranch:
-        description: Current branch
-        type: string
-        default: << pipeline.git.branch >>
       defaultBranch:
         description: Default branch
         type: string
@@ -49,7 +45,7 @@ jobs:
             echo "CIRCLE_SHA1=$CIRCLE_SHA1"
             echo "MESSAGE=<< parameters.commitMessage >>"
             echo "AUTHOR=$(git log --format='%an <%ae>' $CIRCLE_SHA1^!)"
-            echo "BRANCH=<< parameters.currentBranch >>"
+            echo "BRANCH=<< pipeline.git.branch >>"
 
             REPO_NAME="<< parameters.repositoryName >>";
             NAMESPACE="<< parameters.namespace >>"
