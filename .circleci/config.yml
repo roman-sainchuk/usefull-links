@@ -19,7 +19,7 @@ jobs:
       defaultBranch:
         description: Default branch
         type: string
-        default: 'main'
+        default: "main"
       commitMessage:
         description: Commit message
         type: string
@@ -29,23 +29,26 @@ jobs:
       repositoryName:
         description: Repository name
         type: string
+      repositoryUrl:
+        description: Repository URL
+        type: string
       namespace:
         description: Repository owner
         type: string
-        default: ''
+        default: ""
       domain:
         description: Domain name
         type: string
-        default: 'https://app.cloud.redocly.com'
+        default: "https://app.cloud.redocly.com"
     steps:
       - checkout
       - run:
-          name: 'Push files and wait for deployment'
+          name: "Push files and wait for deployment"
           command: |-
-            echo "URL=<< pipeline.trigger_parameters.github_app.repo_url >>";
+            echo "URL=<< parameters.repositoryUrl >>";
             REPO_NAME="<< parameters.repositoryName >>";
             NAMESPACE="<< parameters.namespace >>"
-            NAMESPACE="${NAMESPACE:-$(basename $(echo "<< pipeline.trigger_parameters.github_app.repo_url >>" | sed "s/$REPO_NAME//p"))}"
+            NAMESPACE="${NAMESPACE:-$(basename $(echo "<< parameters.repositoryUrl >>" | sed "s/$REPO_NAME//p"))}"
 
             redocly push << parameters.files >> \
               --organization "<< parameters.organization >>" \
@@ -55,7 +58,7 @@ jobs:
               --branch "$CIRCLE_BRANCH" \
               --author "$(git log --format='%an <%ae>' $CIRCLE_SHA1^!)" \
               --commit-sha "$CIRCLE_SHA1" \
-              --commit-url "<< pipeline.trigger_parameters.github_app.repo_url >>/commit/$CIRCLE_SHA1" \
+              --commit-url "<< parameters.repositoryUrl >>/commit/$CIRCLE_SHA1" \
               --created-at "<< parameters.commitTimestamp >>" \
               --repository "$REPO_NAME" \
               --namespace "$NAMESPACE" \
@@ -66,13 +69,14 @@ workflows:
   push-to-redocly:
     jobs:
       - push:
-          files: 'README.md'
-          organization: 'default'
-          project: 'pushes-testing'
-          mountPath: '/remotes/cicd/useful-links'
-          domain: 'http://localhost'
+          files: "README.md"
+          organization: "default"
+          project: "pushes-testing"
+          mountPath: "/remotes/cicd/useful-links"
+          domain: "http://localhost"
           repositoryName: << pipeline.trigger_parameters.github_app.repo_name >>
+          repositoryUrl: << pipeline.trigger_parameters.github_app.repo_url >>
           commitMessage: << pipeline.trigger_parameters.github_app.commit_message >>
           commitTimestamp: << pipeline.trigger_parameters.github_app.commit_timestamp >>
-          defaultBranch: 'main'
-          namespace: 'roman-sainchuk'
+          defaultBranch: "main"
+          namespace: "roman-sainchuk"
