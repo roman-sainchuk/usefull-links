@@ -47,6 +47,7 @@ jobs:
           name: 'Push files and wait for deployment'
           command: |-
             echo "CIRCLE_SHA1=$CIRCLE_SHA1"
+            echo "MESSAGE="<< parameters.commitMessage >>";
             REPO_NAME="<< parameters.repositoryName >>";
             NAMESPACE="<< parameters.namespace >>"
             NAMESPACE="${NAMESPACE:-$(basename $(echo "<< pipeline.trigger_parameters.github_app.repo_url >>" | sed "s/$REPO_NAME//p"))}"
@@ -57,13 +58,13 @@ jobs:
               --mount-path "<< parameters.mountPath >>" \
               --default-branch "<< parameters.defaultBranch >>" \
               --branch "<< parameters.currentBranch >>" \
-              --author "$(git log --format='%an <%ae>' "$CIRCLE_SHA1"^!)" \
+              --author "$(git log --format='%an <%ae>' $CIRCLE_SHA1^!)" \
               --commit-sha "$CIRCLE_SHA1" \
               --commit-url "<< pipeline.trigger_parameters.github_app.repo_url >>/commit/$CIRCLE_SHA1" \
               --created-at "<< parameters.commitTimestamp >>" \
               --repository "$REPO_NAME" \
               --namespace "$NAMESPACE" \
-              --message "<< parameters.commitMessage >>" \
+              --message << parameters.commitMessage >> \
               --domain "<< parameters.domain >>" \
               --wait-for-deployment
 workflows:
