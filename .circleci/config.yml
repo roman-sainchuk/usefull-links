@@ -19,7 +19,7 @@ jobs:
       defaultBranch:
         description: Default branch
         type: string
-        default: "main"
+        default: 'main'
       commitMessage:
         description: Commit message
         type: string
@@ -35,17 +35,16 @@ jobs:
       namespace:
         description: Repository owner
         type: string
-        default: ""
+        default: ''
       domain:
         description: Domain name
         type: string
-        default: "https://app.cloud.redocly.com"
+        default: 'https://app.cloud.redocly.com'
     steps:
       - checkout
       - run:
-          name: "Push files and wait for deployment"
+          name: 'Push files and wait for deployment'
           command: |-
-            echo "URL=<< parameters.repositoryUrl >>";
             REPO_NAME="<< parameters.repositoryName >>";
             NAMESPACE="<< parameters.namespace >>"
             NAMESPACE="${NAMESPACE:-$(basename $(echo "<< parameters.repositoryUrl >>" | sed "s/$REPO_NAME//p"))}"
@@ -70,10 +69,10 @@ workflows:
     jobs:
       - push:
           files: "README.md"
-          organization: "default"
-          project: "pushes-testing"
-          mountPath: "/remotes/cicd/useful-links"
-          domain: "http://localhost"
+          organization: 'default'
+          project: 'pushes-testing'
+          mountPath: '/remotes'
+          domain: 'http://localhost'
           repositoryName: << pipeline.trigger_parameters.github_app.repo_name >>
           repositoryUrl: << pipeline.trigger_parameters.github_app.repo_url >>
           commitMessage: << pipeline.trigger_parameters.github_app.commit_message >>
