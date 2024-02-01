@@ -53,7 +53,6 @@ jobs:
       - run:
           name: 'Push files and wait for deployment'
           command: |-
-            COMMIT_SHA="<< parameters.commitSha >>";
             REPO_NAME="<< parameters.repositoryName >>";
             NAMESPACE="<< parameters.namespace >>"
             NAMESPACE="${NAMESPACE:-$(basename $(echo "<< pipeline.project.git_url >>" | sed "s/$REPO_NAME//p"))}"
@@ -64,9 +63,9 @@ jobs:
               --mount-path "<< parameters.mountPath >>" \
               --default-branch "<< parameters.defaultBranch >>" \
               --branch "<< parameters.currentBranch >>" \
-              --author "$(git log --format='%an <%ae>' $COMMIT_SHA^!)" \
-              --commit-sha "$COMMIT_SHA" \
-              --commit-url "<< parameters.commitUrl >>" \
+              --author "$(git log --format='%an <%ae>' << parameters.commitSha >>^!)" \
+              --commit-sha "<< parameters.commitSha >>" \
+              --commit-url "<< pipeline.project.git_url >>/commit/<< parameters.commitSha >>" \
               --created-at "<< parameters.commitTimestamp >>" \
               --repository "$REPO_NAME" \
               --namespace "$NAMESPACE" \
@@ -84,7 +83,6 @@ workflows:
           domain: 'http://localhost'
           repositoryName: '<< pipeline.trigger_parameters.github_app.repo_name >>'
           commitMessage: '<< pipeline.trigger_parameters.github_app.commit_message >>'
-          commitUrl: '/commit/<< pipeline.git.revision >>'
           commitTimestamp: '<< pipeline.trigger_parameters.github_app.commit_timestamp >>'
           defaultBranch: 'main'
           namespace: 'roman-sainchuk'
