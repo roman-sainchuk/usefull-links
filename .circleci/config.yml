@@ -52,7 +52,7 @@ jobs:
           command: |-
             REPO_NAME="<< parameters.repositoryName >>";
             NAMESPACE="<< parameters.namespace >>"
-            NAMESPACE="${NAMESPACE:-$(basename $(echo "<< pipeline.project.git_url >>" | sed "s/$REPO_NAME//p"))}"
+            NAMESPACE="${NAMESPACE:-$(basename $(echo "<< pipeline.trigger_parameters.github_app.repo_url >>" | sed "s/$REPO_NAME//p"))}"
 
             redocly push << parameters.files >> \
               --organization "<< parameters.organization >>" \
@@ -62,7 +62,7 @@ jobs:
               --branch "<< parameters.currentBranch >>" \
               --author "$(git log --format='%an <%ae>' << parameters.commitSha >>^!)" \
               --commit-sha "<< parameters.commitSha >>" \
-              --commit-url "<< pipeline.project.git_url >>/commit/<< parameters.commitSha >>" \
+              --commit-url "<< pipeline.trigger_parameters.github_app.repo_url >>/commit/<< parameters.commitSha >>" \
               --created-at "<< parameters.commitTimestamp >>" \
               --repository "$REPO_NAME" \
               --namespace "$NAMESPACE" \
