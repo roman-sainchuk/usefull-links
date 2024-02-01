@@ -84,7 +84,7 @@ workflows:
           domain: 'http://localhost'
           repositoryName: '<< pipeline.trigger_parameters.github_app.repo_name >>'
           commitMessage: '<< pipeline.trigger_parameters.github_app.commit_message >>'
-          commitUrl: '<< pipeline.project.git_url >>/commit/<< pipeline.git.revision >>'
+          commitUrl: '/commit/<< pipeline.git.revision >>'
           commitTimestamp: '<< pipeline.trigger_parameters.github_app.commit_timestamp >>'
           defaultBranch: 'main'
           namespace: 'roman-sainchuk'
