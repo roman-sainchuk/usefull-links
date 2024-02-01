@@ -20,9 +20,6 @@ jobs:
         description: Commit SHA
         type: string
         default: '<< pipeline.git.revision >>'
-      commitUrl:
-        description: Commit URL
-        type: string
       currentBranch:
         description: Current branch
         type: string
