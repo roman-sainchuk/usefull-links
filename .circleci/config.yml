@@ -19,7 +19,7 @@ jobs:
       currentBranch:
         description: Current branch
         type: string
-        default: '<< pipeline.git.branch >>'
+        default: << pipeline.git.branch >>
       defaultBranch:
         description: Default branch
         type: string
