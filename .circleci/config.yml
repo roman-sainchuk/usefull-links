@@ -75,8 +75,8 @@ workflows:
           project: 'pushes-testing'
           mountPath: '/remotes/cicd/useful-links'
           domain: 'http://localhost'
-          repositoryName: '<< pipeline.trigger_parameters.github_app.repo_name >>'
-          commitMessage: '<< pipeline.trigger_parameters.github_app.commit_message >>'
-          commitTimestamp: '<< pipeline.trigger_parameters.github_app.commit_timestamp >>'
+          repositoryName: << pipeline.trigger_parameters.github_app.repo_name >>
+          commitMessage: << pipeline.trigger_parameters.github_app.commit_message >>
+          commitTimestamp: << pipeline.trigger_parameters.github_app.commit_timestamp >>
           defaultBranch: 'main'
           namespace: 'roman-sainchuk'
