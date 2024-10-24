@@ -27,3 +27,8 @@ http://www.javenue.info/post/84
 https://www.tutorialspoint.com/java/lang/system_arraycopy.htm
 
 -----OTHER---
+asdasd
+
+asdsad
+
+1
