@@ -1,5 +1,3 @@
 # circleci-demo
 
 ## Description
-
-### Details
