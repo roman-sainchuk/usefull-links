@@ -1,34 +1,53 @@
-name: 'Push to Redocly'
-
-on:
-  push:
-    branches:
-      - '**'
-
-jobs:
-  push:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20.4.0
-      - name: 'Push files and wait for deployment'
-        run: |-
-          npx @redocly/cli push docs \
-              --organization "cicd-finalizers" \
-              --project "pushes" \
-              --mount-path "/docs/remotes/cicd" \
-              --default-branch "${{ github.event.repository.default_branch || github.event.repository.master_branch }}" \
-              --branch "${{ github.ref_name }}" \
-              --author "${{ github.event.head_commit.author.name }} <${{ github.event.head_commit.author.email }}>" \
-              --commit-sha "${{ github.event.head_commit.id }}" \
-              --commit-url "${{ github.event.head_commit.url }}" \
-              --namespace "${{ github.event.repository.owner.login }}" \
-              --repository "${{ github.event.repository.name }}" \
-              --created-at "${{ github.event.head_commit.timestamp }}" \
-              --message "${{ github.event.head_commit.message }}" \
-              --domain "https://app.lab2.blueharvest.cloud" \
-              --wait-for-deployment
-        env:
-          REDOCLY_AUTHORIZATION: ${{ secrets.REDOCLY_AUTHORIZATION }}
+engineering,engineering@secureframe.com,OWNER,false
+106617109,106617109+andrewzick-scf@users.noreply.github.com,COMMITTER,false
+110414697,110414697+nick-secureframe@users.noreply.github.com,COMMITTER,false
+140654348,140654348+clee4037@users.noreply.github.com,COMMITTER,false
+157747496,157747496+uzairk-sf@users.noreply.github.com,COMMITTER,false
+167253912,167253912+ben-keegan@users.noreply.github.com,COMMITTER,false
+28364201,28364201+adriennelin@users.noreply.github.com,COMMITTER,false
+31863429,31863429+benrskimmer@users.noreply.github.com,COMMITTER,false
+50694727,50694727+owusuappiah@users.noreply.github.com,COMMITTER,false
+7909404,7909404+ali-ehmed@users.noreply.github.com,COMMITTER,false
+85356912,85356912+plewg@users.noreply.github.com,COMMITTER,false
+88875593,88875593+amitmahajan12@users.noreply.github.com,COMMITTER,false
+88999996,88999996+cgongsf@users.noreply.github.com,COMMITTER,false
+97193940,97193940+vineetsridhar1@users.noreply.github.com,COMMITTER,false
+98125604,98125604+connerlphillippi@users.noreply.github.com,COMMITTER,false
+adrianscott,adrianscott@secureframe.com,COMMITTER,false
+alec,alec@alecrodgers.com,COMMITTER,false
+alex.m.sheehan,alex.m.sheehan@gmail.com,COMMITTER,false
+ali.ahmed.cs2014,ali.ahmed.cs2014@gmail.com,COMMITTER,false
+ali.ahmed.dev9,ali.ahmed.dev9@gmail.com,COMMITTER,false
+andrew.zick,andrew.zick@secureframe.com,COMMITTER,false
+anovoselnik,anovoselnik@gmail.com,COMMITTER,false
+apost.delis,apost.delis@gmail.com,COMMITTER,false
+ben.keegan,ben.keegan@secureframe.com,COMMITTER,false
+benrskimmer,benrskimmer@gmail.com,COMMITTER,false
+charles,charles@secureframe.com,COMMITTER,false
+charliemacarth,charliemacarth@gmail.com,COMMITTER,false
+chris.johnson,chris.johnson@secureframe.com,COMMITTER,false
+davidwparker,davidwparker@gmail.com,COMMITTER,false
+hayley,hayley@secureframe.com,COMMITTER,false
+Hydriad,hydriad@users.noreply.github.com,COMMITTER,false
+jonathan.bohrer,jonathan.bohrer@secureframe.com,COMMITTER,false
+khortytsa,khortytsa@gmail.com,COMMITTER,false
+letsanov,letsanov@gmail.com,COMMITTER,false
+lin.adrienne,lin.adrienne@gmail.com,COMMITTER,false
+maria,maria@secureframe.com,COMMITTER,false
+michael3,michael@michaelmelanson.net,COMMITTER,false
+michael.melanson,michael.melanson@secureframe.com,COMMITTER,false
+m.marialau,m.marialau@gmail.com,COMMITTER,false
+muhammad.umair,muhammad.umair@secureframe.com,COMMITTER,false
+nick2,nick@secureframe.com,COMMITTER,false
+nicupop729,nicupop729@gmail.com,COMMITTER,false
+patrickbassut,patrickbassut@hotmail.com,COMMITTER,false
+reetpragya,reetpragya@gmail.com,COMMITTER,false
+sdange2,sdange2@illinois.edu,COMMITTER,false
+se.saadrashid,se.saadrashid@gmail.com,COMMITTER,false
+shlbnsl843,shlbnsl843@gmail.com,COMMITTER,false
+shrav,shrav@secureframe.com,COMMITTER,false
+sjl2,sjl2@users.noreply.github.com,COMMITTER,false
+stewart.j.lynch,stewart.j.lynch@gmail.com,COMMITTER,false
+ukbe.akdogan,ukbe.akdogan@secureframe.com,COMMITTER,false
+uzair.khan,uzair.khan@secureframe.com,COMMITTER,false
+vineet,vineet@secureframe.com,COMMITTER,false
